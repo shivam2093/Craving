@@ -9,9 +9,9 @@ import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
-  <div>
-    <App></App>
-  </div>,
+
+  <App></App>,
+
   document.getElementById("root")
 );
 

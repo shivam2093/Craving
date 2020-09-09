@@ -67,7 +67,6 @@ class Search extends React.Component {
             <p>Food, Drinks and more available for delivery and Pickup.</p>
           </div>
           <div className="btnandtext">
-
             <input type="text" className="fontarr" placeholder="Location" value={this.state.userAddress}></input>
             <Switch>
 

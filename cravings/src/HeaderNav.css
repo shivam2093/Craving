@@ -2,27 +2,45 @@
   margin-top: 5px;
   margin: 10px;
   font-size: 30px;
+ 
 }
 .Craving_logo{
 
-margin: 2px;
+margin-right: 270px;
 
 }
 
+.header{
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
 .mainappname {
-  width: 100px;
-  font-size: 20px;
+  display: inline;
+  
+  font-size: 25px;
+  margin-right: 70%;
+  margin-left: 2%;
+  font-family: monospace;
 }
 
 .header__nav {
   display: flex;
   justify-content: space-evenly;
   font-size: 100px;
+  margin-left: 2px;
+  
+ 
 }
 
 .header__optionline1 {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 800;
+  font-family: monospace;
+  
+  margin-right: 25px;
 }
 
 .header__options {
@@ -33,4 +51,8 @@ margin: 2px;
 .header__optionsignup {
   font-size: 13px;
   font-weight: 800;
+}
+.header__link{
+
+  margin-right: 30px;
 }

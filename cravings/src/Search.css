@@ -68,9 +68,10 @@ margin-left: 17px ;
 }
 
 .Search {
-  float: left;
-  margin-top: 200px;
-  margin-left: 30px;
+  
+  margin-top: 120px;
+  margin-left: 245px;
+  margin-bottom: 200px;
   box-sizing: 100%;
 }
 

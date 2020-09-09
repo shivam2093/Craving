@@ -20,6 +20,7 @@ function App() {
           <Route exact path="/">
             <HeaderNav />
             <Search />
+
           </Route>
           <Route path="/login1">
             <h1> Login </h1>

@@ -1,6 +1,7 @@
 .appname {
   margin-top: 5px;
   margin: 10px;
+  font-size: 30px;
 }
 .Craving_logo{
 
@@ -16,6 +17,7 @@ margin: 2px;
 .header__nav {
   display: flex;
   justify-content: space-evenly;
+  font-size: 100px;
 }
 
 .header__optionline1 {

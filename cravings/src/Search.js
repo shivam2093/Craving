@@ -62,8 +62,10 @@ class Search extends React.Component {
     return (
       <Router>
         <div className="Search">
-          <h1>Looking For </h1> <h1 id="word"> </h1>
-          <p>Food, Drinks and more available for delivery and Pickup.</p>
+          <div className="food">
+            <h1 id="food">Looking For </h1> <h1 id="word"> </h1>
+            <p>Food, Drinks and more available for delivery and Pickup.</p>
+          </div>
           <div className="btnandtext">
 
             <input type="text" className="fontarr" placeholder="Location" value={this.state.userAddress}></input>

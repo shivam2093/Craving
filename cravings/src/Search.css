@@ -56,7 +56,12 @@ margin-left: 17px ;
   margin-left: 10px;
   height: 33px;
 }
+.nextpage{
 
+float: left;
+
+
+}
 .Search input[type="submit"]:hover {
   padding: 5px;
   border: 1px solid #ccc;

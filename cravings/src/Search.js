@@ -4,6 +4,7 @@ import location from './location'
 import App from "./App";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+
 class Search extends React.Component {
 
   constructor(props) {
@@ -58,7 +59,8 @@ class Search extends React.Component {
 
 
   render() {
-
+    // Destructuring state
+    const { userAddress } = this.state
     return (
       <Router>
         <div className="Search">
@@ -67,12 +69,16 @@ class Search extends React.Component {
             <p>Food, Drinks and more available for delivery and Pickup.</p>
           </div>
           <div className="btnandtext">
-            <input type="text" className="fontarr" placeholder="Location" value={this.state.userAddress}></input>
+            <input type="text" className="fontarr" placeholder="Location" value={userAddress}></input>
             <Switch>
 
+
               <input type="submit" placeholder="Search" value="search" onClick={this.getLocation}></input>
+
             </Switch>
+
           </div>
+
         </div>
       </Router>
     );

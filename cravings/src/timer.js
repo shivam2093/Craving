@@ -7,6 +7,8 @@ import $ from "jquery";
     document.getElementById("key").innerHTML = food[rand];
   }, 2000);
 */
+
+
 function Sp() {
   var count = 0;
   var food = ["sushi?", "burger?", "beer?", "chinese?"];
@@ -17,7 +19,7 @@ function Sp() {
         .text(food[count % food.length])
         .fadeIn(400);
     });
-  }, 3000);
+  }, 4000);
 }
 
 export default Sp;

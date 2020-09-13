@@ -19,21 +19,33 @@ font-size: 15px;
   font-size: 50px;
 }
 
+.arrows{
+position: absolute;
+margin-top: 1%;
+}
+.arrow1{
+   
+  margin-left: 20%;
+  margin-bottom: 30%;
+  
+
+}
+#arrow1{
+margin-left: 5% ;
+}
 #word{
 
   font-size: 50px;
 
 }
 
-.btnandtext{
 
-margin-top: 7px;
 
-}
-
-.fontarr{
-
-font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+#fontarr{
+text-overflow: ellipsis;
+color:rgb(45, 49, 56);
+font-family: "Helvetica Neue", Helvetica;
+font-size: 0.9pc;
 
 
 }

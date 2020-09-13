@@ -2,15 +2,21 @@ import React from "react";
 import "./Search.css";
 import location from './location'
 import App from "./App";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import { CgArrowLongRight } from "react-icons/cg";
+import $ from "jquery";
+
+
+
 
 
 class Search extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
 
+    this.state = {
+      context: props.context,
       latitude: null,
       longitude: null,
       userAddress: null
@@ -22,17 +28,25 @@ class Search extends React.Component {
 
   }
 
+
+
   getLocation() {
 
     if (navigator.geolocation) {
 
-      navigator.geolocation.getCurrentPosition(this.getCoordinates);
+      navigator.geolocation.getCurrentPosition(this.getCoordinates, null,
+        { maximumAge: 10000, timeout: 5000, enableHighAccuracy: true });
     }
 
+
+
+
     else {
-      console.log("not Available");
+      console.log("Not Available");
     }
   }
+
+
 
   getCoordinates(position) {
     console.log(position.coords.latitude);
@@ -44,43 +58,58 @@ class Search extends React.Component {
     })
 
     this.reversegeocode();
-
   }
+
 
   reversegeocode() {
-
-    fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.latitude},${this.state.longitude}&sensor=false&key=AIzaSyBwkDQjGoyB3s2DxdIAdax0_pWeeMFNN1o`)
+    var apiKey = `AIzaSyBwkDQjGoyB3s2DxdIAdax0_pWeeMFNN1o`;
+    fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.latitude},${this.state.longitude}&sensor=false&key=${apiKey}`)
       .then(response => response.json())
-      .then(data => this.setState({
-        userAddress: data.results[0].formatted_address
-      }))
+      .then(data => {
+        if (this.setState) {
+          $("#fontarr").attr("value", data.results[0].formatted_address);
+
+
+
+        }
+      })
+
   }
+
 
 
 
   render() {
     // Destructuring state
+
     const { userAddress } = this.state
+
+    window.onload = function () {
+
+
+      document.getElementById("arrow1").click();
+    }
+
+
     return (
-      <Router>
-        <div className="Search">
-          <div className="food">
-            <h1 id="food">Looking For </h1> <h1 id="word"> </h1>
-            <p>Food, Drinks and more available for delivery and Pickup.</p>
-          </div>
-          <div className="btnandtext">
-            <input type="text" className="fontarr" placeholder="Location" value={userAddress}></input>
-            <Switch>
+
+      <div className="Search">
+        <div className="food">
+          <h1 id="food">Want </h1> <h1 id="word"> </h1>
+          <p>Food, Drinks and more available for delivery and Pickup.</p>
+        </div>
+        <div className="arrows">
+
+          <input type="text" id="fontarr" placeholder="Location" />
 
 
-              <input type="submit" placeholder="Search" value="search" onClick={this.getLocation}></input>
-
-            </Switch>
-
-          </div>
+          <button id="arrow1" size="5em" onClick={this.getLocation} style={{ position: "absolute" }} />
 
         </div>
-      </Router>
+      </div>
+
+
+
     );
   }
 

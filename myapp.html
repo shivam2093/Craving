@@ -1,3 +1,11 @@
+
+<html>
+<body>
+	<h1>hey</h1>
+
+	<button onclick="myfunction()">Count bro</button>
+
+	<p id = "demo">0</p>
 <script>
 	console.log("Brother");
 
@@ -132,33 +140,33 @@ console.log("after: \n" + testArr);
 //Boolean Values
 // if else
 // comparison with the equality operator
-function testEqual(val){
+function testEqual1(val){
 if(val == 12){
 	return "equal";
 }
 return "not equal";
 }
-console.log(testEqual(10));
+console.log(testEqual1('12'));
 // comparison with the strict equality operator
 /*
 3 === 3
 3 === '3'
 */
-function testEqual(val){
+function testEqual2(val){
 if(val === 7){
 	return "equal";
 }
 return "not equal";
 }
-console.log(testEqual('7'));
+console.log(testEqual2('7'));
 //comparison with the inequality operator
-function testEqual(val){
+function testEqual3(val){
 if(val != 7){
 	return "not equal";
 }
 return " equal";
 }
-console.log(testEqual('10'));
+console.log(testEqual3('7'));
 //comparison with strict inequality operator
 //comparison with the logical and operator
 //comparison with the greaterthan or equal to operator
@@ -313,7 +321,7 @@ console.log(myArrays);
 // Generate Random Fractions
 // Generate Random whole numbers
 // Generate Random whole numbers within a range
-// Use the parseIt functions
+// Use the parseInt functions
 function convertToInteger(str){
 	return parseInt(str);
 }
@@ -485,17 +493,61 @@ return this._autor = updatedAuthor;
 // Use export to reuse a Code Block
 //use * import everything froma file
 
-import * as capitalizeStrings 
-from "capitalize_strings";
-// Create an Export Fallback with export default
-export default function subtract(x,y) {return x - y};
-// import default
-
-import subtract from "math_functions";
-
-subtract(7,3);
 
 
+var count = 0;
+
+/*count function */
+
+function add(){
+
+	return ++count;
+	
+
+} 
+ function myfunction(){
+document.getElementById("demo").innerHTML = add();
+   }
+
+var deepArray = [["shiv"]];
+var shallowCopy = deepArray.slice();
+shallowCopy.push("bro")
+console.log(deepArray[0],shallowCopy[0]);
+
+
+    function euclid(a,b){
+    		
+    		if(b==0){
+    			return a;	
+
+}
+    		 while (a>=b || b>a){
+    		return euclid(b, a%b); 
+    		
+    		}
+
+    	}
+
+ console.log(euclid(1318,125));
+
+    function pattern(){
+
+
+    	for(i=1; i<10; i++){
+    		for(j=1; j<i; j++){
+
+    			return "hello bro";
+
+    		}
+    	}
+
+
+    }
+
+    console.log(pattern());	
+
+    
+   
 
 
 
@@ -504,5 +556,5 @@ subtract(7,3);
 
 
 </script>
-
-
+</body>
+</html>

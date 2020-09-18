@@ -88,6 +88,7 @@ class Search extends React.Component {
 
 
       document.getElementById("arrow1").click();
+
     }
 
 

@@ -17,7 +17,7 @@ function HeaderNav() {
          Cravings
          </span>
 
-          <Link to="/login1" className="header__link">
+          <Link to="/login" className="header__link">
             <div className="header__options">
               <span className="header__optionline1"> Login </span>
             </div>

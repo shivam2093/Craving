@@ -2,9 +2,10 @@ import React from "react";
 import "./Search.css";
 import location from './location'
 import App from "./App";
-
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { CgArrowLongRight } from "react-icons/cg";
 import $ from "jquery";
+
 
 
 
@@ -35,7 +36,7 @@ class Search extends React.Component {
     if (navigator.geolocation) {
 
       navigator.geolocation.getCurrentPosition(this.getCoordinates, null,
-        { maximumAge: 10000, timeout: 5000, enableHighAccuracy: true });
+        { maximumAge: 10000, timeout: 5000, enableHighAccuracy: false });
     }
 
 
@@ -50,6 +51,8 @@ class Search extends React.Component {
 
   getCoordinates(position) {
     console.log(position.coords.latitude);
+
+
 
     this.setState({
       latitude: position.coords.latitude,
@@ -70,8 +73,8 @@ class Search extends React.Component {
           $("#fontarr").attr("value", data.results[0].formatted_address);
 
 
-
         }
+
       })
 
   }
@@ -87,11 +90,9 @@ class Search extends React.Component {
     window.onload = function () {
 
 
-      document.getElementById("arrow1").click();
+      document.getElementById("fontarr").click();
 
     }
-
-
     return (
 
       <div className="Search">
@@ -101,10 +102,10 @@ class Search extends React.Component {
         </div>
         <div className="arrows">
 
-          <input type="text" id="fontarr" placeholder="Location" />
+          <input type="text" id="fontarr" placeholder="Location" onClick={this.getLocation} />
 
 
-          <button id="arrow1" size="5em" onClick={this.getLocation} style={{ position: "absolute" }} />
+          <button id="arrow1" size="5em" style={{ position: "absolute" }}> <ArrowForwardIosIcon /> </button>
 
         </div>
       </div>

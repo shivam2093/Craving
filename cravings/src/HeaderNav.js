@@ -7,9 +7,6 @@ function HeaderNav() {
   return (
     <nav className="header">
       <div className="appname">
-
-
-
         <div className="header__nav">
           <span className="mainappname">
             <img src={ReactLogo}
@@ -22,11 +19,7 @@ function HeaderNav() {
               <span className="header__optionline1"> Login </span>
             </div>
           </Link>
-          <Link to="/signup1" className="header__link">
-            <div className="header__options">
-              <span className="header__optionline1"> SignUp </span>
-            </div>
-          </Link>
+
         </div>
       </div>
     </nav>

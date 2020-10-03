@@ -5,6 +5,7 @@ import App from "./App";
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { CgArrowLongRight } from "react-icons/cg";
 import $ from "jquery";
+import { Link } from "react-router-dom";
 
 
 
@@ -28,6 +29,7 @@ class Search extends React.Component {
     this.reversegeocode = this.reversegeocode.bind(this);
 
   }
+
 
 
 
@@ -104,9 +106,9 @@ class Search extends React.Component {
 
           <input type="text" id="fontarr" placeholder="Location" onClick={this.getLocation} />
 
-
-          <button id="arrow1" size="5em" style={{ position: "absolute" }}> <ArrowForwardIosIcon /> </button>
-
+          <Link to="/Userpage">
+            <button id="arrow1" size="5em" style={{ position: "absolute" }}> <ArrowForwardIosIcon /> </button>
+          </Link>
         </div>
       </div>
 

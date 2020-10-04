@@ -4,7 +4,8 @@ import firebase from "firebase";
 const firebaseApp = firebase.initializeApp({
 
 
-    apiKey: "AIzaSyBqHCXn_VEyFU4ByaYM7aeWSDfSvEmCyFg",
+
+    apiKey: process.env.API_KEY_FIREBASE,
     authDomain: "cravings-288600.firebaseapp.com",
     databaseURL: "https://cravings-288600.firebaseio.com",
     projectId: "cravings-288600",

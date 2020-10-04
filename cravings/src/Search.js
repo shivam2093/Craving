@@ -6,6 +6,7 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { CgArrowLongRight } from "react-icons/cg";
 import $ from "jquery";
 import { Link } from "react-router-dom";
+require('dotenv').config();
 
 
 
@@ -67,7 +68,7 @@ class Search extends React.Component {
 
 
   reversegeocode() {
-    var apiKey = `AIzaSyBwkDQjGoyB3s2DxdIAdax0_pWeeMFNN1o`;
+    var apiKey = process.env.API_KEY;
     fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.latitude},${this.state.longitude}&sensor=false&key=${apiKey}`)
       .then(response => response.json())
       .then(data => {

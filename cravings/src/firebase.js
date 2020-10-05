@@ -1,11 +1,13 @@
 import firebase from "firebase";
 
 
+var apikey = process.env.API_KEY_FIREBASE;
+
 const firebaseApp = firebase.initializeApp({
 
 
 
-    apiKey: process.env.API_KEY_FIREBASE,
+    apiKey: `AIzaSyBqHCXn_VEyFU4ByaYM7aeWSDfSvEmCyFg`,
     authDomain: "cravings-288600.firebaseapp.com",
     databaseURL: "https://cravings-288600.firebaseio.com",
     projectId: "cravings-288600",
@@ -17,6 +19,14 @@ const firebaseApp = firebase.initializeApp({
 
 
 });
+
+
+
+
+const firebaseConfig = {
+    apiKey: process.env.REACT_APP_API_KEY,
+    // ... 
+};
 
 const auth = firebase.auth();
 

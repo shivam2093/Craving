@@ -7,7 +7,6 @@ import Sp from "./timer";
 import Search from "./Search";
 import Login from "./Login";
 import Userpage from "./components/Userpage";
-import Item from "./components/Item";
 
 function App() {
   Sp();

@@ -52,7 +52,7 @@ class Userpage extends Component {
 
             var lat = position.coords.latitude;
             var lng = position.coords.longitude;
-            var apiKey = '37fed9b8da069cbe18c3774e6b4b9cbf'
+
             /*var url = 'https://cors-anywhere.herokuapp.com/http://developers.zomato.com/api/v2.1/search?start=0&count=10&lat=' + lat + '&lon=' + lng +
                 '& radius=5000000 & cuisines=' + $this.state.cuisine;*/
 

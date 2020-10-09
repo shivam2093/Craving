@@ -63,7 +63,7 @@ class Userpage extends Component {
                 type: 'GET',
                 beforeSend: function (request) {
 
-                    request.setRequestHeader('user-key', localStorage.getItem('zomato-api-key'));
+                    request.setRequestHeader('user-key', localStorage.getItem('zomato-api'));
                 },
                 success: function (result) {
 

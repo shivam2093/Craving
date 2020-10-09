@@ -1,6 +1,7 @@
 import React from "react";
 import "./Search.css";
 import location from './location'
+import Userpage from './components/Userpage'
 import App from "./App";
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { CgArrowLongRight } from "react-icons/cg";
@@ -74,7 +75,6 @@ class Search extends React.Component {
       .then(data => {
         if (this.setState) {
           $("#fontarr").attr("value", data.results[0].formatted_address);
-
 
         }
 

@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 
 
 import React, { Component } from 'react'
+import Footer from './Footer';
 
 class Userpage extends Component {
 
@@ -17,7 +18,8 @@ class Userpage extends Component {
 
             cuisine: '',
             nearByRestaurant: [],
-            operation: 'Search'
+            operation: 'Search',
+            searchRes: ''
 
         };
 
@@ -28,7 +30,8 @@ class Userpage extends Component {
 
         this.setState({
 
-            cuisine: event.target.value
+            searchRes: event.target.value
+
         })
 
     }
@@ -59,7 +62,7 @@ class Userpage extends Component {
             $.ajax({
 
                 url: 'https://cors-anywhere.herokuapp.com/https://developers.zomato.com/api/v2.1/search?start=0&count=10&lat=' + lat + '&lon=' + lng +
-                    '&radius=5000000&cuisines=' + $this.state.cuisine,
+                    '&radius=50000000&cuisines=' + $this.state.cuisine + '&q=' + $this.state.searchRes,
                 type: 'GET',
                 beforeSend: function (request) {
 
@@ -154,6 +157,10 @@ class Userpage extends Component {
 
                 </div>
 
+                <section className="footer">
+
+                    <Footer></Footer>
+                </section>
             </div>
         )
     }

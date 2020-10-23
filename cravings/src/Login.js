@@ -19,11 +19,23 @@ function Login() {
         auth.signInWithEmailAndPassword(email, password)
             .then((auth) => {
 
-                history.push("/");
+                history.push("/Userpage");
 
             })
             .catch(e => alert(e.message));
     };
+
+    const register = (event) => {
+        event.preventDefault();
+
+        auth.createUserWithEmailAndPassword(email, password)
+            .then((auth) => {
+
+                history.push("/Userpage");
+
+            })
+            .catch(e => alert(e.message));
+    }
 
 
     return (
@@ -45,7 +57,7 @@ function Login() {
                     <input type="checkbox" /> Show Password
                     <span id="loglogout">
                         <Button variant="outlined" onClick={login} color="primary">Login</Button> &nbsp;&nbsp;
-                        <Button variant="outlined" onClick={login} color="secondary">Create Account</Button>
+                        <Button variant="outlined" onClick={register} color="secondary">Create Account</Button>
                     </span>
                 </form>
 

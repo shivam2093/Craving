@@ -16,7 +16,7 @@ function HeaderNav() {
 
           <Link to="/login" className="header__link">
             <div className="header__options">
-              <span className="header__optionline1"> Login </span>
+              <span className="header__optionline1" style={{ display: "inline" }}> SignIn </span>
             </div>
           </Link>
 

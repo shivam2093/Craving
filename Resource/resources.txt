@@ -1,0 +1,5 @@
+to get idea of each methods and its terminology:  https://learnjavascript.co.uk/jq/reference/jqglossary.html
+
+React Tutoriols:  Code evolution on youtube
+
+Redux:  Code evolution 

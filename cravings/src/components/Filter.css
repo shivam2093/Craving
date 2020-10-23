@@ -1,0 +1,30 @@
+
+.all_filters{
+
+  background-color: whitesmoke;
+}
+.sort_items{
+
+padding: 10%;
+display: flex;
+flex-direction: column;
+
+}
+
+.btn_success{
+
+    border: none;
+    background-color: inherit;
+}
+
+.recently_added{
+
+    margin-top: 20%;
+}
+
+
+#filterby_rating{
+
+margin-top: 20%;
+
+}

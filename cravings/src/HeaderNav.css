@@ -37,12 +37,21 @@ margin-right: 270px;
   font-size: 15px;
   font-weight: 800;
   font-family: monospace;
-  display: inline-block;
+  
 
+}
+
+.header__optionline2{
+ 
+  font-size: 15px;
+  font-weight: 800;
+  font-family: monospace;
+  
 }
 
 .header__options {
   display: flex;
+  
   
 }
 

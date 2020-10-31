@@ -2,19 +2,12 @@ import { AccordionActions } from '@material-ui/core';
 import { green } from '@material-ui/core/colors';
 import React, { Component } from 'react'
 import {
-    Row,
-    Col,
-    Container,
-    Accordion,
-    Button,
-    Card,
-    Form,
-    Spinner,
-    ListGroup,
-    Dropdown
+    Container
 } from "react-bootstrap";
 import Icofont from "react-icofont";
 import './Filter.css'
+import Select from 'react-select'
+import { data } from 'jquery';
 
 
 
@@ -36,6 +29,32 @@ class Filter extends Component {
             { name: 'Popularity:' }
         ];
 */
+        const options = [
+            {
+                value: 'H to L', label: 'High to Low'
+            },
+            { value: 'L to H', label: 'Low to High' }
+        ]
+
+        const costoptions = [
+            {
+                value: 'High to Low', label: 'High to Low'
+            },
+            { value: 'Low to High', label: 'Low to High' }
+        ]
+
+        const categories = [
+            {
+                value: 'Delivery', label: 'delivery'
+            },
+            { value: 'Dine-out', label: 'dine-out' },
+            { value: 'Catching-up', label: 'catching-up' },
+            { value: 'Takeout', label: 'takeout' },
+            { value: 'Cafes', label: 'cafes' }
+
+        ]
+
+
         return (
             <div className="filter">
                 <section>
@@ -50,52 +69,32 @@ class Filter extends Component {
                                 <div ClassName="sortby_cost">
                                     <h4 >Cost</h4>
                                     <span >
-                                        <Dropdown.Toggle variant="success" id="dropdown-basic" >
-                                            Dropdown Button
-                                        </Dropdown.Toggle>
 
-                                        <Dropdown.Menu>
-                                            <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                                            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                                        </Dropdown.Menu>
+                                        <Select options={costoptions} defaultValue="cost" onChange={this.props.sortitems} />
 
-
-                                        {/*
-                                        <select defaultValue="Sort" onChange={this.props.sortitems} >
-                                            <option disabled value="sort">Cost</option>
-                                            <option>High to Low</option>
-                                            <option>Low to high</option>
-                                        </select>
-                                        */}
                                     </span>
                                 </div>
-                                <div id="filterby_rating">
-                                    <h5>Rating </h5>
+
+                                <div id="rating">
+                                    <h5>Rating</h5>
                                     <span >
-                                        <select defaultValue="Sorting" onChange={this.props.sortratings}>
-                                            <option disabled value="Sorting">Rating</option>
-                                            <option>High to Low</option>
-                                            <option>Low to High</option>
-                                        </select>
+                                        <Select options={options} defaultValue="ratings" onChange={this.props.sortratings} />
                                     </span>
 
                                 </div>
 
-                                <div className="recently_added">
 
-                                    <button className="btn_success"> Recently added </button>
+                                <div id="categories">
+                                    <h5>Categories</h5>
+                                    <span >
+                                        <Select options={categories} />
+                                    </span>
 
                                 </div>
-
+                                <div className="recently_added">
+                                    <button className="btn_success"> Recently added </button>
+                                </div>
                             </div>
-
-
-
-
-
-
-
                         </div>
 
 

@@ -11,47 +11,49 @@ import Practice from './Practice'
 import auth from "./firebase";
 import MainpageBanner from "./components/MainpageBanner";
 import Footer from "./components/Footer";
+import { useStateValue } from "./Provider";
+
+
 
 
 function App() {
   Sp();
-  /*
-    const dispatch = useStateValue();
-  
-    useEffect(() => {
-  
-  
-      auth.onAuthStateChanged((authUser) => {
-  
-        if (authUser) {
-  
-          dispatch({
-  
-            type: "SET_USER",
-            user: authUser
-  
-          });
-        }
-        else {
-  
-          dispatch({
-  
-            type: "SET_USER",
-            user: null
-          });
-        }
-  
-      })
-  
-  
-  
-    }, []);
-  */
+
+  const [{ }, dispatch] = useStateValue();
+  useEffect(() => {
+
+    auth.onAuthStateChanged((authUser) => {
+      console.log('The user is', authUser)
+      if (authUser) {
+
+        dispatch({
+
+          type: "SET_USER",
+          user: authUser
+
+        });
+      }
+      else {
+
+        dispatch({
+
+          type: "SET_USER",
+          user: null
+        });
+      }
+
+    })
+
+
+
+  }, []);
+
 
   return (
 
     <Router>
       <div className="App">
+
         <Switch>
           <Route exact path="/">
             <HeaderNav />
@@ -65,10 +67,10 @@ function App() {
 
           </Route>
           <Route path="/login">
-
             <Login />
           </Route>
         </Switch>
+
       </div>
     </Router>
   );

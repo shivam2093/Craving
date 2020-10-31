@@ -21,7 +21,7 @@ class Search extends React.Component {
     super(props);
 
     this.state = {
-      context: props.context,
+
       latitude: null,
       longitude: null,
       userAddress: null

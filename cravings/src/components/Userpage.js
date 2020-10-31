@@ -50,13 +50,13 @@ class Userpage extends Component {
 
     sortitems = (e) => {
 
-        console.log(e.target.value)
-        this.setState({ sort: e.target.value })
+        console.log(e.value)
+        this.setState({ sort: e.value })
     }
 
     sortratings = (e) => {
-        console.log(e.target.value)
-        this.setState({ sortRating: e.target.value })
+        console.log(e.value)
+        this.setState({ sortRating: e.value })
     }
 
 
@@ -67,6 +67,8 @@ class Userpage extends Component {
     }
 
     search = (event) => {
+        event.preventDefault();
+
         var $this = this;
 
         $this.setState({
@@ -88,6 +90,7 @@ class Userpage extends Component {
                 url: 'https://cors-anywhere.herokuapp.com/https://developers.zomato.com/api/v2.1/search?start=0&count=10&lat=' + lat + '&lon=' + lng +
                     '&radius=500000&cuisines=' + $this.state.cuisine + '&q=' + $this.state.searchRes,
                 type: 'GET',
+
                 beforeSend: function (request) {
 
                     request.setRequestHeader('user-key', localStorage.getItem('zomato-api'));
@@ -96,17 +99,16 @@ class Userpage extends Component {
 
                     console.log(result);
 
-
                     $this.setState({
                         nearByRestaurant: result.restaurants,
                         operation: 'Search'
                     })
 
+
                 }
             })
         })
     }
-
 
 
 
@@ -119,7 +121,7 @@ class Userpage extends Component {
 
             /* console.log(a.restaurant.user_rating.aggregate_rating) */
 
-            if (this.state.sort === 'Low to high') {
+            if (this.state.sort === 'Low to High') {
 
                 return (a.restaurant.average_cost_for_two - b.restaurant.average_cost_for_two);
 
@@ -128,18 +130,17 @@ class Userpage extends Component {
 
                 return (b.restaurant.average_cost_for_two - a.restaurant.average_cost_for_two);
             }
-            else if (this.state.sortRating === 'High to Low') {
+            else if (this.state.sortRating === 'H to L') {
 
                 return (b.restaurant.user_rating.aggregate_rating - a.restaurant.user_rating.aggregate_rating);
 
             }
-            else if (this.state.sortRating === 'Low to High') {
+            else if (this.state.sortRating === 'L to H') {
 
                 return (a.restaurant.user_rating.aggregate_rating - b.restaurant.user_rating.aggregate_rating);
 
             }
         })
-
         return (
             <div className="user_home">
                 <Image src={window.location.origin + '/img/Cravings.png'} alt="html5" className="img_style" style={{ width: "100%" }} />
@@ -167,6 +168,8 @@ class Userpage extends Component {
                         <Col> <Filter sortitems={this.sortitems} sortratings={this.sortratings} /></Col>
 
                         <Col xs={6}>
+
+
 
                             <FilterList nearByRestaurant={sortedRestaurants} />
 

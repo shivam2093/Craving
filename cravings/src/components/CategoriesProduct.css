@@ -1,0 +1,42 @@
+.item {
+
+
+width: 50%;
+
+}
+
+
+.osahan-category-item{
+
+    background: #fff;
+    margin: 5px 2px;
+    border-radius: 3px;
+    overflow: hidden;
+    text-align: center;
+    padding: 7px;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+    border: 1px solid #fff;
+}
+
+.osahan-category-item h6 {
+    margin: 0px;
+    font-size: 13px;
+    color: #11999e;
+}
+
+h6 {
+    display: block;
+    font-size: 0.67em;
+    margin-block-start: 2.33em;
+    margin-block-end: 2.33em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    margin-bottom: .5rem;
+    font-weight: 500;
+    line-height: 1.2;
+}

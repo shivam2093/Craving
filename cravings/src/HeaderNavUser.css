@@ -1,0 +1,70 @@
+.appname {
+    font-size: 30px;
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+   display: flex; 
+   flex-direction: column;
+   
+  }
+  
+  .login_setting{
+
+display: flex;
+flex-direction: row;
+
+
+  }
+  .header{
+    
+    top: 0;
+    z-index: 100;
+  }
+  
+  .left_side {
+    
+    display: flex;
+    flex-direction: row;
+    font-size: 25px;
+    font-family: monospace;
+  }
+  
+  
+  
+  .header__nav {
+    display: flex;
+    justify-content: space-between;
+    font-size: 100px;
+    margin-left: 2px;
+    
+   
+  }
+  
+  .header__optionline1 {
+    font-size: 15px;
+    font-weight: 800;
+    font-family: monospace;
+    
+  
+  }
+  
+  .header__optionline2{
+   
+    font-size: 15px;
+    font-weight: 800;
+    font-family: monospace;
+    
+  }
+  
+  .header__options {
+    display: flex;
+  flex-direction: column;
+    
+  }
+  
+  .header__optionsignup {
+    font-size: 13px;
+    font-weight: 800;
+  }
+  .header__link{
+  
+    margin-right: 70px;
+  }

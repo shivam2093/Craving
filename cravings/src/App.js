@@ -7,29 +7,32 @@ import Sp from "./timer";
 import Search from "./Search";
 import Login from "./Login";
 import Userpage from "./components/Userpage";
-import Practice from './Practice'
 import auth from "./firebase";
 import MainpageBanner from "./components/MainpageBanner";
 import Footer from "./components/Footer";
 import { useStateValue } from "./Provider";
-
-
+import HeaderNavUser from "./HeaderNavUser";
+import CategoriesProduct from './components/CategoriesProduct'
 
 
 function App() {
   Sp();
 
   const [{ }, dispatch] = useStateValue();
+
+
   useEffect(() => {
 
     auth.onAuthStateChanged((authUser) => {
       console.log('The user is', authUser)
       if (authUser) {
-
         dispatch({
-
           type: "SET_USER",
-          user: authUser
+          user: authUser,
+          uid: authUser.uid,
+          photo: authUser.photoURL,
+          email: authUser.email,
+          displayName: authUser.displayName
 
         });
       }
@@ -58,11 +61,13 @@ function App() {
           <Route exact path="/">
             <HeaderNav />
             <Search />
+            <CategoriesProduct />
             <MainpageBanner />
             <Footer />
           </Route>
           <Route path="/Userpage">
-            <HeaderNav />
+            <HeaderNavUser />
+
             <Userpage />
 
           </Route>

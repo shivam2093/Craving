@@ -15,11 +15,12 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import ImageIcon from '@material-ui/icons/Image';
 import FilterList from './FilterList'
 import { keys } from '@material-ui/core/styles/createBreakpoints';
+import CategoriesProduct from './CategoriesProduct'
+import Title from './Title'
 
 
 
 class Userpage extends Component {
-
 
     constructor(props) {
         super(props)
@@ -31,14 +32,18 @@ class Userpage extends Component {
             operation: 'Search',
             searchRes: '',
             sort: '',
-            sortRating: ''
+            sortRating: '',
+
 
         };
 
 
     }
 
+
     onChange = (event) => {
+
+
 
         this.setState({
 
@@ -64,6 +69,26 @@ class Userpage extends Component {
 
 
 
+    }
+
+
+
+    recover = (event) => {
+        //parse the localstorage value
+        let data = JSON.parse(localStorage.getItem('history'));
+        this.setState({ history: data.history });
+    }
+
+
+    saveToStorage = (e) => {
+
+        console.log(e)
+        //local storage only takes in key value pair so you would have to serialize it.
+        let history = this.state.history ? this.state.history : { history: [] };
+
+        history.history.push({ text: this.state.searchRes, link: 'store link here' });
+
+        localStorage.setItem('history', JSON.stringify(history));
     }
 
     search = (event) => {
@@ -115,8 +140,6 @@ class Userpage extends Component {
 
     render() {
 
-
-
         const sortedRestaurants = this.state.nearByRestaurant.sort((a, b) => {
 
             /* console.log(a.restaurant.user_rating.aggregate_rating) */
@@ -143,24 +166,21 @@ class Userpage extends Component {
         })
         return (
             <div className="user_home">
-                <Image src={window.location.origin + '/img/Cravings.png'} alt="html5" className="img_style" style={{ width: "100%" }} />
+                <Image src={window.location.origin + '/img/Cravings.png'} alt="html5" className="img_style" />
 
-                <div className="food_and_location">
-                    <div className="location">
-                        <h2 >
-                            <span id="font_name">Delivery</span> &nbsp;
-                                     </h2>
-                        <hr />
 
-                        <input type="text" id="inputlocation" placeholder="location" />
-                    </div>
-                </div>
+                <Title
+                    title="Offers Near You"
+                    subTitle="Best deals at your favourite restaurants"
+                />
+
+
                 <div className="foodsection">
                     <hr />
                     <h1> Food </h1>
                     <div className="searchplace" >
                         <input type="text" placeholder="Cravings" value={this.state.searchRes} style={{ width: 300 }} onChange={this.onChange} sortitems={this.sortitems} sortratings={this.sortratings} />
-                        <Button value={this.state.operation} onClick={this.search} style={{ width: 100 }}> Search </Button>
+                        <Button value={this.state.operation} onClick={this.search} saveToStorage={this.saveToStorage} style={{ width: 100 }}> Search </Button>
 
                     </div>
 
@@ -169,58 +189,9 @@ class Userpage extends Component {
 
                         <Col xs={6}>
 
-
-
                             <FilterList nearByRestaurant={sortedRestaurants} />
 
-                            {/*
-                            <div className="searchallresults">
-                                {
-                                    this.state.nearByRestaurant.map(function (restaurantObj, index) {
-                                        var item = restaurantObj.restaurant;
 
-                                        const sortedRestaurants = this.state.nearByRestaurant.sort((a, b) => {
-
-                                            if (this.state.sort === 'High to Low') {
-
-                                                return item[a].average_cost_for_two - item[b].average_cost_for_two;
-
-                                            }
-
-                                        })
-
-                                        return (
-
-                                            <div className="gb" key={index}>
-
-                                                <div>
-                                                    <img src={item.thumb.hasOwnProperty('thumb') === false ? (<div className="thumnail"> <ImageIcon /> </div>) : (<div>{item.thumb}</div>)} />
-                                                </div>
-                                                <div className="sx">
-
-                                                    <h3>{item.name}</h3>
-
-                                                    <b> Address: </b> {item.location.address}<br />
-                                                    <b> Cuisine: </b> {item.cuisines} <br />
-                                                    <b> Price: </b> {item.currency} {item.average_cost_for_two === 0 ? (<div className="inline"> -- </div>) : (<div className="inline"> {item.average_cost_for_two} </div>)} <br />
-                                                    <b> Ratings: <span style={{
-                                                        color: '#' + item.user_rating.rating_color
-                                                    }}>
-
-                                                        {item.user_rating.aggregate_rating}  </span></b><br /><br />
-                                                    <b>   <span className="allinOne">
-                                                        <Button variant="outlined" color="primary" onClick={this.callPhone}> CALL</Button></span> </b>
-                                                </div>
-                                            </div>
-                                        )
-                                    }, this)
-                                }
-
-
-
-                            </div>
-
-                            */}
 
                         </Col>
                     </Row>

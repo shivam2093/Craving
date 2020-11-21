@@ -15,6 +15,26 @@ import {
 
 export class Footer extends Component {
 
+    constructor(props) {
+        super(props)
+
+        this.state = {
+
+            subscribe: ''
+        }
+    }
+
+
+    subscribe = (event) => {
+
+
+        this.setState({
+
+            subscribe: "Thank you for subscribe"
+        })
+
+    }
+
 
 
     render() {
@@ -55,12 +75,12 @@ export class Footer extends Component {
                         <Col>
                             <Row md={12} style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: 50 }}>
                                 <Col md={6} style={{ textAlign: "center" }}>
-                                    <h6> Subscribe to our Newsletter </h6>
+                                    <h3> Subscribe to our Newsletter </h3>
                                     <Form style={{ marginBottom: 1 }}>
                                         <InputGroup style={{ marginBottom: 3 }}>
                                             <FormControl type="text" placeholder="please enter your email" />
                                             <InputGroup.Append>
-                                                <Button type="button" variant="primary" style={{ width: 130 }}>Subscribe</Button>
+                                                <Button type="button" variant="primary" style={{ width: 130 }} onClick={this.subscribe}>Subscribe</Button>
                                             </InputGroup.Append>
                                         </InputGroup>
 
@@ -78,9 +98,9 @@ export class Footer extends Component {
                             </Row>
                             <Row style={{ marginTop: 50, display: "flex", justifyContent: "center", alignItems: "center" }}>
                                 <Col >
-                                    <h6 style={{ marginBottom: 20 }} className="mb-3">
+                                    <h5 style={{ marginBottom: 20 }} className="mb-3">
                                         About Us
-                                </h6>
+                                </h5>
                                     <ul style={{ listStyle: "none" }}>
 
 
@@ -91,7 +111,7 @@ export class Footer extends Component {
                                     </ul>
                                 </Col>
                                 <Col>
-                                    <h6 className="mb-3"> Foodies</h6>
+                                    <h5 className="mb-3"> Foodies</h5>
                                     <ul style={{ listStyle: "none" }}>
 
                                         <li> <Link to="#"> Community </Link> </li>
@@ -102,7 +122,7 @@ export class Footer extends Component {
                                 </Col>
 
                                 <Col>
-                                    <h6 className="mb-3"> For restaurants</h6>
+                                    <h5 className="mb-3"> For restaurants</h5>
                                     <ul style={{ listStyle: "none" }}>
 
                                         <li> <Link to="#"> Advertise </Link> </li>

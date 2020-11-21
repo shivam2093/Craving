@@ -1,7 +1,7 @@
 
 import './Userpage.css'
 import $ from "jquery"
-
+import Pagination from './Pagination'
 import Filter from './Filter'
 import React, { Component } from 'react'
 import Footer from './Footer';
@@ -11,6 +11,7 @@ import {
     Container,
     Button, Image
 } from "react-bootstrap";
+import { Link } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import ImageIcon from '@material-ui/icons/Image';
 import FilterList from './FilterList'
@@ -33,7 +34,9 @@ class Userpage extends Component {
             searchRes: '',
             sort: '',
             sortRating: '',
-
+            showPopup: false,
+            currentPage: 1,
+            postPerPage: 5,
 
         };
 
@@ -43,7 +46,7 @@ class Userpage extends Component {
 
     onChange = (event) => {
 
-
+        console.log(event.target.value)
 
         this.setState({
 
@@ -65,34 +68,32 @@ class Userpage extends Component {
     }
 
 
-    callPhone = (event) => {
+    callPhone = () => {
 
 
+        this.setState({
 
+            showPopup: true
+        })
+
+    }
+
+    reset = (event) => {
+
+        this.setState({
+
+            nearByRestaurant: []
+        })
     }
 
 
 
-    recover = (event) => {
-        //parse the localstorage value
-        let data = JSON.parse(localStorage.getItem('history'));
-        this.setState({ history: data.history });
-    }
 
-
-    saveToStorage = (e) => {
-
-        console.log(e)
-        //local storage only takes in key value pair so you would have to serialize it.
-        let history = this.state.history ? this.state.history : { history: [] };
-
-        history.history.push({ text: this.state.searchRes, link: 'store link here' });
-
-        localStorage.setItem('history', JSON.stringify(history));
-    }
 
     search = (event) => {
         event.preventDefault();
+
+
 
         var $this = this;
 
@@ -100,38 +101,67 @@ class Userpage extends Component {
             operation: 'Searching..'
         })
 
+
         navigator.geolocation.getCurrentPosition(function (position) {
 
-
-
             var lat = position.coords.latitude;
-            var lng = position.coords.longitude;
+            var lon = position.coords.longitude;
+
+            let apiKey = process.env.x - rapidapi - key;
+
+            console.log(lat)
+            console.log(lon)
 
             /*var url = 'https://cors-anywhere.herokuapp.com/http://developers.zomato.com/api/v2.1/search?start=0&count=10&lat=' + lat + '&lon=' + lng +
                 '& radius=5000000 & cuisines=' + $this.state.cuisine;*/
+            /* 
+        $.ajax({
+ 
+            url: 'https://cors-anywhere.herokuapp.com/https://developers.zomato.com/api/v2.1/search?start=0&count=10&lat=' + lat + '&lon=' + lng +
+                '&radius=500000&cuisines=' + $this.state.cuisine + '&q=' + $this.state.searchRes,
+            type: 'GET',
+ 
+            beforeSend: function (request) {
+ 
+                request.setRequestHeader('user-key', localStorage.getItem('zomato-api'));
+            },
+            success: function (result) {
+ 
+                console.log(result);
+ 
+                $this.setState({
+                    nearByRestaurant: result.restaurants,
+                    operation: 'Search'
+                })
+ 
+ 
+            }
+        })
+        */
 
             $.ajax({
 
-                url: 'https://cors-anywhere.herokuapp.com/https://developers.zomato.com/api/v2.1/search?start=0&count=10&lat=' + lat + '&lon=' + lng +
-                    '&radius=500000&cuisines=' + $this.state.cuisine + '&q=' + $this.state.searchRes,
-                type: 'GET',
-
-                beforeSend: function (request) {
-
-                    request.setRequestHeader('user-key', localStorage.getItem('zomato-api'));
-                },
-                success: function (result) {
-
-                    console.log(result);
-
-                    $this.setState({
-                        nearByRestaurant: result.restaurants,
-                        operation: 'Search'
-                    })
 
 
+                url: 'https://cors-anywhere.herokuapp.com/https://us-restaurant-menus.p.rapidapi.com/restaurants/search?distance=3&lat=' + lat + '&page=1&lon=' + lon + '?q=' + $this.state.searchRes,
+                type: "GET",
+                "headers": {
+
+                    "x-rapidapi-key": `${apiKey}`,
+                    "x-rapidapi-host": "us-restaurant-menus.p.rapidapi.com"
                 }
+            }).done(function (result) {
+
+                $this.setState({
+                    nearByRestaurant: result.result.data,
+                    operation: 'Search'
+                })
+
             })
+
+
+
+
         })
     }
 
@@ -140,9 +170,18 @@ class Userpage extends Component {
 
     render() {
 
+        const indexOfLastPost = this.state.currentPage * this.state.postPerPage;
+        const indexOfFirstPost = indexOfLastPost - this.state.postPerPage;
+        const currentPosts = this.state.nearByRestaurant.slice(indexOfFirstPost, indexOfLastPost)
+        const paginate = (pageNumber) => {
+            this.setState({
+                currentPage: pageNumber
+            })
+        }
+        {/*   
         const sortedRestaurants = this.state.nearByRestaurant.sort((a, b) => {
 
-            /* console.log(a.restaurant.user_rating.aggregate_rating) */
+             console.log(a.restaurant.user_rating.aggregate_rating) 
 
             if (this.state.sort === 'Low to High') {
 
@@ -164,6 +203,10 @@ class Userpage extends Component {
 
             }
         })
+        */}
+
+
+
         return (
             <div className="user_home">
                 <Image src={window.location.origin + '/img/Cravings.png'} alt="html5" className="img_style" />
@@ -176,12 +219,12 @@ class Userpage extends Component {
 
 
                 <div className="foodsection">
-                    <hr />
+
                     <h1> Food </h1>
                     <div className="searchplace" >
-                        <input type="text" placeholder="Cravings" value={this.state.searchRes} style={{ width: 300 }} onChange={this.onChange} sortitems={this.sortitems} sortratings={this.sortratings} />
-                        <Button value={this.state.operation} onClick={this.search} saveToStorage={this.saveToStorage} style={{ width: 100 }}> Search </Button>
-
+                        <input type="text" placeholder="Cravings" value={this.state.searchRes} style={{ width: 300 }} onChange={this.onChange} /*sortitems={this.sortitems} sortratings={this.sortratings} */ />
+                        <Button value={this.state.operation} onClick={this.search} style={{ width: 100 }} target="_blank"> Search </Button>
+                        <Button onClick={this.reset} style={{ width: 100 }}> Reset </Button>
                     </div>
 
                     <Row md={4} >
@@ -189,11 +232,17 @@ class Userpage extends Component {
 
                         <Col xs={6}>
 
-                            <FilterList nearByRestaurant={sortedRestaurants} />
 
 
 
+
+                            <FilterList  /* nearByRestaurant={sortedRestaurants} */ nearByRestaurant={currentPosts} showPopup={this.callPhone} /> <br />
+
+
+
+                            <Pagination postPerPage={this.state.postPerPage} totalPosts={this.state.nearByRestaurant.length} paginate={paginate} />
                         </Col>
+
                     </Row>
 
 

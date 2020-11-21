@@ -15,7 +15,6 @@ function Login() {
     const history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [displayName, setdisplayName] = useState('');
     const [check, setcheck] = useState(true);
 
 
@@ -71,22 +70,20 @@ function Login() {
             <div className="logo">
                 <Link to="/">
 
-                    <img src={ReactLogo} /></Link>
+                    <img src={ReactLogo} alt="Main page" /></Link>
                 <span >Cravings </span>
             </div>
 
 
+
             {/*
-                
-                <Categories />
-            
-            */}
+            <Categories />
+
+*/}
             <div className="login_form">
                 <h1> Sign in </h1> &nbsp;
                 <form>
                     <div className="input_user">
-                        <h5> Name </h5>
-                        <input value={displayName} onChange={event => setdisplayName(event.target.value)} type="name" />
                         <h5> Email</h5>
                         <input value={email} onChange={event => setEmail(event.target.value)} type="email" />
                         <h5>Password</h5>

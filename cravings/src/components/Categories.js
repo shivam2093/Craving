@@ -10,6 +10,7 @@ export class Categories extends Component {
             latitude: null,
             longitude: null,
             userAddress: null,
+            searchRes: ''
 
         }
     }
@@ -21,10 +22,6 @@ export class Categories extends Component {
             navigator.geolocation.getCurrentPosition(this.getCoordinates, null,
                 { maximumAge: 10000, timeout: 5000, enableHighAccuracy: false });
         }
-
-
-
-
         else {
             console.log("Not Available");
         }
@@ -35,8 +32,6 @@ export class Categories extends Component {
     getCoordinates = (position) => {
         console.log(position.coords.latitude);
 
-
-
         this.setState({
             latitude: position.coords.latitude,
             longitude: position.coords.longitude
@@ -46,23 +41,34 @@ export class Categories extends Component {
         this.reversegeocode();
     }
 
+    onChange = (event) => {
+
+
+
+        this.setState({
+
+            searchRes: event.target.value
+
+        })
+    }
 
     reversegeocode = (request) => {
 
-        fetch(`https://cors-anywhere.herokuapp.com/https://us-restaurant-menus.p.rapidapi.com/menuitems/search/geo?&lat=${this.state.latitude}&lon=${this.state.longitude}&distance=5000&page=1`,
-            {
-                "method": "GET",
-                "headers": {
-                    "x-rapidapi-key": "14f7101a22msh8f7f029de86fa53p13901bjsn92b266f39a5c",
-                    "x-rapidapi-host": "us-restaurant-menus.p.rapidapi.com"
-                }
-            })
-            .then(response => {
-                console.log(response.json());
-            })
-            .catch(err => {
-                console.error(err);
-            });
+        const settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": `https://us-restaurant-menus.p.rapidapi.com/restaurants/search?page=1&q=${this.state.searchRes}&lon=${this.state.longitude}&lat=${this.state.latitude}&distance=100`,
+            "method": "GET",
+            "headers": {
+
+                "x-rapidapi-key": "14f7101a22msh8f7f029de86fa53p13901bjsn92b266f39a5c",
+                "x-rapidapi-host": "us-restaurant-menus.p.rapidapi.com"
+            }
+        };
+        $.ajax(settings).done(function (response) {
+            console.log(response.result);
+        });
+
         /*
                 fetch(`https://cors-anywhere.herokuapp.com/https://developers.zomato.com/api/v2.1/collections?&start=0&count=10&lat=${this.state.latitude}&lon=${this.state.longitude}&radius=5000000`,
                     {
@@ -83,19 +89,17 @@ export class Categories extends Component {
 
         window.onload = function () {
 
-
             document.getElementById("fontarr").click();
 
         }
+
         return (
             <div>
-                <input type="text" id="fontarr" placeholder="Location" onClick={this.getLocation} />
-                <button id="arrow1" size="5em" style={{ position: "absolute" }}> <ArrowForwardIosIcon /> </button>
-
-
-
+                <input type="text" id="fontarr" placeholder="Location" onChange={this.onChange} />
+                <button id="arrow1" size="5em" style={{ position: "absolute" }} onClick={this.getLocation} > <ArrowForwardIosIcon /> </button>
 
             </div>
+
         )
     }
 }

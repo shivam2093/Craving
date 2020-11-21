@@ -61,7 +61,7 @@ export class Categories extends Component {
             "method": "GET",
             "headers": {
 
-                "x-rapidapi-key": "14f7101a22msh8f7f029de86fa53p13901bjsn92b266f39a5c",
+                "x-rapidapi-key": "",
                 "x-rapidapi-host": "us-restaurant-menus.p.rapidapi.com"
             }
         };

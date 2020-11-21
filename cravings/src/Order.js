@@ -21,15 +21,16 @@ const Order = () => {
 
     const loadData = () => {
 
-
-        var apiKey = process.env.KEY;
         const settings = {
             "async": true,
             "crossDomain": true,
             "url": `https://us-restaurant-menus.p.rapidapi.com/restaurant/${restaurant_id}/menuitems?page=1`,
             "method": "GET",
+            beforeSend: function (result) {
+                result.setRequestHeader("x-rapidapi-key", localStorage.getItem('x-rapidapi-key'))
+            },
             "headers": {
-                "x-rapidapi-key": `${apiKey}`,
+
                 "x-rapidapi-host": "us-restaurant-menus.p.rapidapi.com"
             }
         };

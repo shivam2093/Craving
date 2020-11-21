@@ -107,7 +107,7 @@ class Userpage extends Component {
             var lat = position.coords.latitude;
             var lon = position.coords.longitude;
 
-            let apiKey = process.env.x - rapidapi - key;
+
 
             console.log(lat)
             console.log(lon)
@@ -140,14 +140,14 @@ class Userpage extends Component {
         */
 
             $.ajax({
-
-
-
-                url: 'https://cors-anywhere.herokuapp.com/https://us-restaurant-menus.p.rapidapi.com/restaurants/search?distance=3&lat=' + lat + '&page=1&lon=' + lon + '?q=' + $this.state.searchRes,
+                url: 'https://us-restaurant-menus.p.rapidapi.com/restaurants/search?distance=3&lat=' + lat + '&page=1&lon=' + lon + '?q=' + $this.state.searchRes,
                 type: "GET",
+                beforeSend: function (result) {
+                    result.setRequestHeader("x-rapidapi-key", localStorage.getItem('x-rapidapi-key'))
+                },
                 "headers": {
 
-                    "x-rapidapi-key": `${apiKey}`,
+
                     "x-rapidapi-host": "us-restaurant-menus.p.rapidapi.com"
                 }
             }).done(function (result) {
